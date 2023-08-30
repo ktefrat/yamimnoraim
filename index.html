@@ -186,6 +186,11 @@
 
             stashEnglish();
 
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('language') == "he") {
+                localizeHebrew();
+            }
+
             $('#he').on('click', function() {
                 localizeHebrew();
             });
