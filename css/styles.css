@@ -1,0 +1,92 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 40px;
+}
+
+.date {
+    font-size: smaller;
+}
+
+h3 {
+    margin-block-end: 0em;
+    color: green;
+}
+
+h3~p:first-of-type,
+.davenerInput,
+.name,
+.email,
+.totalsTitle~p:first-of-type {
+    margin-top: 0.2em;
+}
+
+#davenerTitle,
+#nameTitle,
+#emailTitle,
+#memberTitle,
+#numDavenersTitle,
+#totalsTitle {
+    margin-bottom: 0em;
+    font-weight: bold;
+    font-size: small;
+}
+
+#logo {
+    /* position: absolute; */
+    /* top: 40px;
+                right: 40px; */
+    left: 0px;
+    right: 0px;
+    height: 4.3em;
+    padding-right: 1em;
+    float: left;
+}
+
+.name,
+.gender,
+.type,
+.grade,
+.days {
+    margin-bottom: 0.5em;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.davenerWidget {
+    margin-right: 1em;
+}
+
+#davenerX {
+    display: none;
+}
+
+#submitButton {
+    margin-top: 1em;
+}
+
+.gone {
+    display: none;
+}
+
+input.error,
+select.error {
+    border: 1px solid red;
+}
+
+label.error {
+    color: red;
+}
+
+.due {
+    font-size: smaller;
+    font-weight: bold;
+}
+
+#contact {
+    margin-top: 2em;
+    font-size: small;
+}
+
+#locale {
+    float: right;
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <!-- TODO 
+        Shul GutHub
+        Shul HeroTofu
+        Shul web site
+        Field for comments
+        Thank you page
+
+
+
+    500 or 600?
+    Written form attached here
+    Break into two pages?
+    Who should get submissions?
+    -->
+    <head>
+        <title>
+            Kapot Temarim Yamim Noraim Seating
+        </title>
+        <link rel="stylesheet" href="css/styles.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <img src="images/logo.png" id="logo">
+        <h3 class="heading">
+            <span id="kapot">Kapot Temarim</span><br/>
+            <span id="address">HaZiporen 5, Efrat</span><br/>
+            <span id="date">Elul, 5783</span>
+        </h3>
+        <p id="locale"><a id="en" href="#">English</a> | <a id="he" href="#">עברית</a></p>
+
+        <div>
+        <p id="dear">Dear Kapot Temarim family,</p>
+        
+        <p id="intro">As we approach another Rosh Hashanah, we wish everyone a year of health, happiness and spiritual growth, as individuals and together as a community. We'd also like to take this opportunity to welcome all those who have recently moved into the neighborhood! We hope that you will find a warm second family within our shul.</p>
+        
+        <p><span id="outstanding">As we close the year, we ask all current members to take care of any outstanding obligations to the shul (payment for kiddushes or previous dues or fees, etc.) <a href="https://ktefrat.org.il/donate/" target="_blank">here</a>. Thank you!</p>
+    </div>
+    <div>
+        <h3 id="membershipTitle">Membership</h3>
+        <p id="fees">Membership fees are as follows:</p>
+        <ul>
+            <li id="membershipFeeFull">Building Fund Members: <strong>800&#8362;</strong> (per family)</li>
+            <li id="membershipFeePartial">Annual Members: <strong>1,100&#8362;</strong> (per family)</li>
+            <li id="membershipFeeWeekday">Weekday Davening (non-membership): <strong>500&#8362;</strong></li>
+        </ul>
+        
+        <p id="infoForm">All members, new and old should fill out <a href="https://ktefrat.org.il/memberform/" target="_blank">this form</a> if they have not already done so.</p>
+        
+        <p id="negotiable">We would be thrilled to welcome you as a member of our community. If you have any financial constraints, we encourage you to speak with Rafi Eis (<a href="mailto:rafieis@gmail.com" target="_blank">rafieis@gmail.com</a>) confidentially. </p>
+    </div>
+    <div>
+        <h3 id="buildingFundHeader">Building Fund</h3>
+        <p id="buildingFundAmount">The Building Fund total payment is <strong>3,600&#8362;</strong>. Building Fund payments may be made in installments, with a minimum of 360&#8362; per year. Payment for building fund can be made <a href="https://www.jgive.com/new/en/ils/donation-targets/103156" target="_blank">here</a>.</p>
+    </div>
+    <div>
+        <h3 id="seating">Seating for the Yamim Noraim</h3>
+        <p id="terms">Membership includes seating for immediate family members. Seats for married children, parents, grandparents, and guests are <strong>150&#8362;/seat</strong> for the Yamim Noraim and <strong>100&#8362;/seat</strong> for either Rosh Hashanah or Yom Kippur. Additional seating depends on availability. Seating for children under 5th grade will depend on availability.</p>
+        
+        <p id="deadline">To reserve seats, please complete the below form or if you are unable, the written form attached here, by Tuesday, September 5, 2023 / 19 Elul.</p>
+        
+        <p id="methods">Payment for annual dues and extra seating can be made using one of the following methods:</p>
+        <ul>
+        <li id="methodJGive"><strong>Preferred</strong>: Shul Website (JGive): <a href="https://ktefrat.org.il/donate/" target="_blank">https://ktefrat.org.il/donate/</a></li>
+        <li><span id="methodBank">Bank Transfer:</span>
+        <br/><span id="accountName">Account Name: Beit Knesset Kapot Temarim</span>
+        <br/><span id="bankName">Bank: Mizrachi 20</span>
+        <br/><span id="branch">Branch: Efrat 454</span>
+        <br/><span id="accountNumber">Account number: 149924</span>
+        </li>
+        <li id="check">Check made out to Kapot Temarim</li>
+        </ul>
+    </div>
+    <div>
+        <p id="thanks">Thank you in advance for your prompt attention to this matter. </p>
+        
+        <p id="signature">Vaad Menahel of Kapot Temarim & the Gabbaim</p>
+    </div>
+
+    <div>
+        <h3 id="requests">Seating Requests for Yamim Noraim</h3>
+        
+        <p id="nameTitle">Name</p>
+        <input id="name" class="name0" type="text" name="name"/>
+ 
+        <p id="emailTitle">Email</p>
+        <input id="email" class="email" type="text" name="email"/>
+ 
+        <p id="memberTitle">Membership status</p>
+        <select id="membership" name="membership">
+            <option value="-">-</option>
+            <option value="fullMember" id="fullMember">Previously paid building fund; paying annual membership</option>
+            <option value="becomingFullMember" id="becomingFullMember">Did not yet pay building fund but would like to now, along with annual membership</option>
+            <option value="partialMember" id="partialMember">Will pay annual membership this year, not building fund</option>
+            <option value="notAMember" id="notAMember">Not yet a member</option>
+        </select>
+        
+        
+        <p id="numDavenersTitle">Total number of daveners over the course of the Yamim Noraim</p>
+        <select id="numDaveners" name="number">
+            <option value="-1">-</option>
+        </select>
+
+        <div id="daveners">
+
+        </div>
+        <div id="summary" class="gone">
+            <h3 id="totalsDue">Total amounts due</h3>
+            <p id="eachLink">Please pay each sum at the appropriate link.</p>
+            <ul>
+                <li><a href="https://www.jgive.com/new/en/ils/donation-targets/103157" target="_blank" id="membershipDueLabel">Membership</a>: <span id="membershipDue">0</span>&#8362;</li>
+                <li><a href="https://www.jgive.com/new/en/ils/donation-targets/103156" target="_blank" id="buildingFundDueLabel">Building fund</a>: <span id="buildingFundDue">0</span>&#8362;</li>
+                <li><a href="https://www.jgive.com/new/en/ils/collect/donation-targets/103135/amount" target="_blank" id="seatsDueLabel">Seats</a>: <span id="seatsDue">0</span>&#8362;</li>
+            </ul>
+            <button id="submitButton" type="submit">Submit</button>
+        </div>
+        <div id="contact">
+            Please contact <a href="mailto:ktefrat@gmail.com" target="_blank">ktefrat@gmail.com</a> with any questions or comments.
+        </div>
+
+
+
+
+
+        <div id="davenerX">
+            <p id="davenerTitle"><span id="davenerTitleStart">Davener #</span><span id="davenerNumber">X</span></p>
+            <p class="davenerInput">
+                <input class="name davenerWidget" type="text" placeholder="Name" name="nameX" id="nameX"/>
+                <span class="gender davenerWidget">
+                    <input id="maleButtonX" type="radio" name="genderX" value="male"></input>
+                    <label id="maleLabelX" class="maleLabel" for="maleButtonX">Male</label>
+                    <input id="femaleButtonX" type="radio" name="genderX" value="female"></input>
+                    <label id="femaleLabelX" class="femaleLabel" for="femaleButtonX">Female</label>
+                </span>
+                <span class="type davenerWidget">
+                    <select name="typeX">
+                        <option value="-" id="optionType">Type</option>
+                        <option value="member" id="optionMember">Member</option>
+                        <option value="youngKid" id="optionYoungKid">Child under grade 5</option>
+                        <option value="oldKid" id="optionOldKid">Child - grade 5+</option>
+                        <option value="guest" id="optionGuest">Married child / guest</option>
+                    </select>
+                </span>
+                <select name="gradeX" class="grade gone davenerWidget">
+                    <option value="-" id="optionGrade">Grade</option>
+                    <option value="gan" id="optionGan">Gan</option>
+                    <option value="1" id="optionFirst">1st</option>
+                    <option value="2" id="optionSecond">2nd</option>
+                    <option value="3" id="optionThird">3rd</option>
+                    <option value="3" id="optionFourth">4th</option>
+                </select>
+                <span class="days davenerWidget">
+                    <input id="roshHaShanahX" type="checkbox" name="roshHaShanahX"></input>
+                    <label id="roshHaShanahLabelX" class="roshHaShanahLabel" for="roshHaShanahX">Rosh HaShanah</label>
+                    <input id="yomKippurX" type="checkbox" name="yomKippurX"></input>
+                    <label id="yomKippurLabelX" class="yomKippurLabel" for="yomKippurX">Yom Kippur</label>
+                </span>
+                <span id="dueX" class="gone due">
+                    <span id="due">Due:</span>
+                    <span id="dueAmountX"></span>
+                </span>
+            </p>
+        </div>
+    </div>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/localization.js"></script>
+    <script src="js/index.js"></script>
+</html>
