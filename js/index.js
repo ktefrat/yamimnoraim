@@ -1,6 +1,7 @@
 const maxNumDaveners = 20;
 var numDaveners = 0;
 var submitAttempted = false;
+var language = 'en';
 
 const membershipFull = 800;
 const membershipPartial = 1100;
@@ -13,61 +14,6 @@ var buildingFundDue = 0;
 var seatsDue = 0;
 var seatSummary = []
 
-// TODO
-// Hebrew
-
-$( document ).ready(function() {
-    for (i = 0; i < maxNumDaveners; i++) {
-        $('#numDaveners').append($('<option>', {
-            value: i + 1,
-            text: i + 1
-        }));
-    }
-
-    $('#numDaveners').on('change', function() {
-        updateDaveners(this.value);
-        validate();
-    });
-
-    $('#submitButton').on('click', function() {
-        submitAttempted = true;
-        if (validate()) {
-            submit();
-        }
-    });
-
-    stashEnglish();
-
-    $('#he').on('click', function() {
-        $("html").children().css("direction","rtl");
-
-        $('#logo').css('padding-right', '0em');
-        $('#logo').css('padding-left', '1em');
-        $('#logo').css('float', 'right');
-
-        $('#locale').css('float', 'left');
-
-        $('.davenerWidget').css('margin-right', '0em');
-        $('.davenerWidget').css('margin-left', '1em');
-
-        localize("he");
-    });
-
-    $('#en').on('click', function() {
-        $("html").children().css("direction","ltr");
-
-        $('#logo').css('padding-right', '1em');
-        $('#logo').css('padding-left', '0em');
-        $('#logo').css('float', 'left');
-
-        $('#locale').css('float', 'right');
-
-        $('.davenerWidget').css('margin-right', '1em');
-        $('.davenerWidget').css('margin-left', '0em');
-
-        localize("en");
-    });
-});
 
 function stashEnglish() {
     localizations["en"] = [];
@@ -75,10 +21,41 @@ function stashEnglish() {
         localizations["en"][key] = $('#' + key).html()
     }
     localizations["en"]['name'] = "Name"
+}
 
+function localizeHebrew() {
+    $("html").children().css("direction","rtl");
+
+    $('#logo').css('padding-right', '0em');
+    $('#logo').css('padding-left', '1em');
+    $('#logo').css('float', 'right');
+
+    $('#locale').css('float', 'left');
+
+    $('.davenerWidget').css('margin-right', '0em');
+    $('.davenerWidget').css('margin-left', '1em');
+
+    localize("he");
+}
+
+function localizeEnglish() {
+    $("html").children().css("direction","ltr");
+
+    $('#logo').css('padding-right', '1em');
+    $('#logo').css('padding-left', '0em');
+    $('#logo').css('float', 'left');
+
+    $('#locale').css('float', 'right');
+
+    $('.davenerWidget').css('margin-right', '1em');
+    $('.davenerWidget').css('margin-left', '0em');
+
+    localize("en");
 }
 
 function localize(locale) {
+    language = locale;
+
     for (const [key, value] of Object.entries(localizations[locale])) {
         $('#' + key).html(value)
     }
@@ -142,12 +119,14 @@ function submit() {
     data["Rosh HaShanah summary"] = seatSummary["rh"]["men"] + " men, " + seatSummary["rh"]["women"] + " women"
     data["Yom Kippur summary"] = seatSummary["yk"]["men"] + " men, " + seatSummary["yk"]["women"] + " women"
 
+    data["Notes"] = $('#notes').val()
+
     data['Membership due'] = membershipDue + "₪";
     data['Building fund due'] = buildingFundDue + "₪";
     data['Seats due'] = seatsDue + "₪";
     data['Total due'] = (membershipDue + buildingFundDue + seatsDue) + "₪";
     
-    sendEmail("https://public.herotofu.com/v1/4b2f5a60-45d1-11ee-afc4-2f612dbc7441", data, onSuccess, onError);
+    sendEmail("https://public.herotofu.com/v1/1aadd290-4702-11ee-b711-0fdc810d0d65", data, onSuccess, onError);
 
 }
 
@@ -215,8 +194,9 @@ function getDavenerText(number) {
 }
 
 var onSuccess = function(response) {
-    alert("Form successfully submitted!\nIf you have not already done so, please visit the JGive links to complete your reservation by paying any amounts due.");
+    // alert("Form successfully submitted!\nIf you have not already done so, please visit the JGive links to complete your reservation by paying any amounts due.");
     console.log(response);
+    window.location.replace("thanks.html?language=" + language + "&membershipDue=" + membershipDue + "&buildingFundDue=" + buildingFundDue + "&seatsDue=" + seatsDue);
 };
 
 var onError = function(err) {

@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html>
     <!-- TODO 
-        Shul GutHub
-        Shul HeroTofu
         Shul web site
-        Field for comments
         Thank you page
 
-
-
-    500 or 600?
-    Written form attached here
-    Break into two pages?
-    Who should get submissions?
+        500 or 600?
+        Written form attached here
+        Break into two pages?
     -->
     <head>
         <title>
@@ -108,6 +102,8 @@
 
         </div>
         <div id="summary" class="gone">
+            <p id="notesTitle">Additional notes</p>
+            <textarea rows="3" cols="50" name="notes" id="notes"></textarea>
             <h3 id="totalsDue">Total amounts due</h3>
             <p id="eachLink">Please pay each sum at the appropriate link.</p>
             <ul>
@@ -170,4 +166,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="js/localization.js"></script>
     <script src="js/index.js"></script>
+    <script> 
+        $( document ).ready(function() {
+            for (i = 0; i < maxNumDaveners; i++) {
+                $('#numDaveners').append($('<option>', {
+                    value: i + 1,
+                    text: i + 1
+                }));
+            }
+
+            $('#numDaveners').on('change', function() {
+                updateDaveners(this.value);
+                validate();
+            });
+
+            $('#submitButton').on('click', function() {
+                submitAttempted = true;
+                if (validate()) {
+                    submit();
+                }
+            });
+
+            stashEnglish();
+
+            $('#he').on('click', function() {
+                localizeHebrew();
+            });
+
+            $('#en').on('click', function() {
+                localizeEnglish()
+            });
+        });
+    </script>
 </html>
