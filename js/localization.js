@@ -12,7 +12,7 @@ hebrew["membershipTitle"] = "חֲבֵרוּת"
 hebrew["fees"] = "דמי חברות הן כדלקמן:"
 hebrew["membershipFeeFull"] = "חברי קרן בנין: <strong>800&#8362;</strong> (למשפחה)"
 hebrew["membershipFeePartial"] = "חברים שנתיים: <strong>1,100&#8362;</strong> (למשפחה)"
-hebrew["membershipFeeWeekday"] = "תפילות ימי חול (ללא חברות): <strong>500&#8362;</strong>"
+hebrew["membershipFeeWeekday"] = "תפילות ימי חול (ללא חברות): <strong>600&#8362;</strong>"
 hebrew["infoForm"] = 'כל החברים, החדשים והוותיקים מתבקשים למלא <a href="https://ktefrat.org.il/memberform/" target="_blank">טופס זה</a> אם טרם עשו זאת.'
 hebrew["negotiable"] = 'נשמח לקבל אותכם כחברים בקהילה שלנו. במידה ויש לכם אילוצים כספיים, אפשר לדבר עם רפי אייז (<a href="mailto:rafieis@gmail.com" target="_blank">rafieis@gmail.com</a>)  בסודיות.'
 hebrew['buildingFundHeader'] = 'קרן בנין'
@@ -37,7 +37,7 @@ hebrew['memberTitle'] = 'מצב חברות'
 hebrew['fullMember'] = 'קרן בנין שולם; משלם דמי חברות שנתיים'
 hebrew['becomingFullMember'] = 'קרן בנין טרם שולם; משלם אותו כעת עם דמי חברות שנתיים'
 hebrew['partialMember'] = 'משלם דמי חברות שנתיים, אבל לא קרן בנין'
-hebrew['notAMember'] = 'עוד לא מצטרף לחברות בית הכנסת'
+hebrew['notAMember'] = 'עוד לא מצטרף לחברות בית הכנסת; רוצה רק מושבים'
 hebrew['numDavenersTitle'] = 'סה״כ מתפללים במשך ימים נוראים'
 hebrew['contact'] = 'לשאלות או הערות, נא ליצור קשר עם <a href="mailto:ktefrat@gmail.com" target="_blank">ktefrat@gmail.com</a>.'
 hebrew['davenerTitleStart'] = 'מתפלל #'
@@ -53,7 +53,7 @@ hebrew['yomKippurLabelX'] = 'יום כיפור'
 hebrew['due'] = 'לתשלום:'
 hebrew['totalsDue'] = 'סכומים לתשלום'
 hebrew['eachLink'] = 'נא לשלם כל סכום בקישור המתאים.'
-hebrew['membershipDueLabel'] = 'דמי חברות'
+hebrew['membershipDueLabel'] = 'תשלום שנתי'
 hebrew['buildingFundDueLabel'] = 'קרן בנין'
 hebrew['seatsDueLabel'] = 'תשלום למושבים'
 hebrew['submitButton'] = 'שלח'
@@ -66,3 +66,4 @@ hebrew['optionThird'] = 'ג׳'
 hebrew['optionFourth'] = 'ד׳'
 hebrew['notesTitle'] = 'הערות'
 hebrew['thankyou'] = 'תודה!'
+hebrew['weekdayDavener'] = 'מתפלל ימי חול'

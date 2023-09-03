@@ -6,6 +6,7 @@ var language = 'en';
 const membershipFull = 800;
 const membershipPartial = 1100;
 const buildingFund = 3600;
+const weekdayDavener = 600;
 const seatOne = 100;
 const seatTwo = 150;
 
@@ -98,6 +99,9 @@ function submit() {
             break;
         case "partialMember":
             data['Membership'] = "Will pay annual membership this year, not building fund";
+            break;
+        case "weekdayDavener":
+            data['Membership'] = "Weekday davener";
             break;
         case "notAMember":
             data['Membership'] = "Not yet a member";
@@ -446,6 +450,9 @@ function validate() {
             break;
         case "partialMember":
             membershipDue = membershipPartial;
+            break;
+        case "weekdayDavener":
+            membershipDue = weekdayDavener;
             break;
         default:
             membershipDue = 0;
