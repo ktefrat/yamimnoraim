@@ -25,18 +25,16 @@
         <h3 id="totalsDue">Total amounts due</h3>
         <p id="eachLink">Please pay each sum at the appropriate link.</p>
         <ul>
-            <li><a href="https://www.jgive.com/new/en/ils/donation-targets/103157" target="_blank"
+            <li><a href="https://icom.yaad.net/p/?action=pay&Amount=&Coin=1&FixTash=False&Info=Annual%20Dues&J5=False&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=False&Sign=True&Tash=1&UTF8=True&UTF8out=True&action=pay&email=&sendemail=True&tmp=11&signature=79d428c7d6aae39d8634ed3d0edd7b51a8a11698bb680315448667e057f6574c" target="_blank"
                     id="membershipDueLabel">Annual dues</a>: <span id="membershipDue">0</span>&#8362;</li>
-            <li><a href="https://www.jgive.com/new/en/ils/donation-targets/103156" target="_blank"
+            <li><a href="https://pay.hyp.co.il/cgi-bin/yaadpay/yaadpay3ds.pl?Amount=3600&Coin=1&FixTash=False&Info=Building%20Fund&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=True&Tash=1&UTF8out=True&action=pay&freq=1&sendemail=True&tmp=11&signature=9a82bde4c243551ccdee8592b0379c75490991da45996eade5c68bfc2e6ac414" target="_blank"
                     id="buildingFundDueLabel">Building fund</a>: <span id="buildingFundDue">0</span>&#8362;</li>
-            <li><a href="https://www.jgive.com/new/en/ils/collect/donation-targets/103135/amount" target="_blank"
+            <li><a href="https://icom.yaad.net/p/?action=pay&Amount=&Coin=1&FixTash=False&Info=Yamim%20Noraim%20Seats&J5=False&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=False&Sign=True&Tash=1&UTF8=True&UTF8out=True&action=pay&email=&sendemail=True&tmp=11&signature=f75619bcb01c1d3d743f570cc194065084bbf54033978458be4c90625b703bdc" target="_blank"
                     id="seatsDueLabel">Seats</a>: <span id="seatsDue">0</span>&#8362;</li>
         </ul>
 
-        <p id="methods">Payment for annual dues and extra seating can be made using one of the following methods:</p>
+        <p id="methods">Please make every effort to pay using the links already provided above. For those who require a different payment method, you may use the following options:</p>
         <ul>
-            <li id="methodJGive"><strong>Preferred</strong>: Shul Website (JGive): <a
-                    href="https://ktefrat.org.il/donate/" target="_blank">https://ktefrat.org.il/donate/</a></li>
             <li><span id="methodBank">Bank Transfer:</span>
                 <br /><span id="accountName">Account Name: Beit Knesset Kapot Temarim</span>
                 <br /><span id="bankName">Bank: Mizrachi 20</span>
@@ -47,7 +45,7 @@
         </ul>
     </div>
     <div id="contact">
-        Please contact <a href="mailto:ktefrat@gmail.com" target="_blank">ktefrat@gmail.com</a> with any questions or
+        Please contact <a href="mailto:info@ktefrat.org.il" target="_blank">info@ktefrat.org.il</a> with any questions or
         comments.
     </div>
     </div>
@@ -76,6 +74,31 @@
         $('#membershipDue').text(urlParams.get('membershipDue'));
         $('#buildingFundDue').text(urlParams.get('buildingFundDue'));
         $('#seatsDue').text(urlParams.get('seatsDue'));
+
+        if (urlParams.get('membershipDue') == 0) {
+            $('#membershipDueLabel').removeAttr("href");
+        } else {
+            generateLink(urlParams.get('membershipDue'), language == "en" ? "Annual Dues" : "דמי חבר", urlParams.get('email'), function(response) {
+               $('#membershipDueLabel').attr('href', response.link);
+            }, onLinkError);
+        }
+
+        if (urlParams.get('buildingFundDue') == 0) {
+            $('#buildingFundDueLabel').removeAttr("href");
+        } else {
+            generateLink(urlParams.get('buildingFundDue'), language == "en" ? "Building Fund" : "קרן בניין", urlParams.get('email'), function(response) {
+               $('#buildingFundDueLabel').attr('href', response.link);
+            }, onLinkError);
+        }
+
+        if (urlParams.get('seatsDue') == 0) {
+            $('#seatsDueLabel').removeAttr("href");
+        } else {
+            generateLink(urlParams.get('seatsDue'), language == "en" ? "Seats for Yamim Noraim" : "מקומות לימים נוראים", urlParams.get('email'), function(response) {
+               $('#seatsDueLabel').attr('href', response.link);
+            }, onLinkError);
+        }
+
 
     });
 </script>

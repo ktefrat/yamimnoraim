@@ -27,10 +27,13 @@ h3~p:first-of-type,
 #memberTitle,
 #numDavenersTitle,
 #totalsTitle,
-#notesTitle {
+#notesTitle, #elsewhereTitle {
     margin-bottom: 0em;
     font-weight: bold;
     font-size: small;
+}
+#elsewhereTitle {
+    font-weight: normal;
 }
 
 #logo {
@@ -71,7 +74,8 @@ h3~p:first-of-type,
 }
 
 input.error,
-select.error {
+select.error,
+textarea.error {
     border: 1px solid red;
 }
 
@@ -91,4 +95,13 @@ label.error {
 
 #locale {
     float: right;
+}
+
+#elsewhereSection {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#elsewhere {
+    margin-bottom: 0.5em;
 }

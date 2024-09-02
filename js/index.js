@@ -87,120 +87,80 @@ function localize(locale) {
 
 function submit() {
     var data = {};
-    data['Name'] = $('#name').first().val();
-    data['Email'] = $('#email').first().val();
+    data['name'] = $('#name').first().val();
+    data['email'] = $('#email').first().val();
+    data['year'] = 2024;
 
-    switch ($('#membership').val()) {
-        case "fullMember":
-            data['Membership'] = "Previously paid building fund; paying annual membership";
-            break;
-        case "becomingFullMember":
-            data['Membership'] = "Did not yet pay building fund but would like to now, along with annual membership";
-            break;
-        case "partialMember":
-            data['Membership'] = "Will pay annual membership this year, not building fund";
-            break;
-        case "weekdayDavener":
-            data['Membership'] = "Weekday davener";
-            break;
-        case "notAMember":
-            data['Membership'] = "Not yet a member";
-            break;
-    }
+    data['membership'] = $('#membership').val()
 
-    seatSummary["rh"] = []
-    seatSummary["yk"] = []
-    seatSummary["rh"]["men"] = 0
-    seatSummary["rh"]["women"] = 0
-    seatSummary["yk"]["men"] = 0
-    seatSummary["yk"]["women"] = 0
+    seatSummary["roshHaShanah"] = []
+    seatSummary["yomKippur"] = []
+    seatSummary["roshHaShanah"]["men"] = 0
+    seatSummary["roshHaShanah"]["women"] = 0
+    seatSummary["yomKippur"]["men"] = 0
+    seatSummary["yomKippur"]["women"] = 0
 
-    data['Number of daveners'] = numDaveners;
+    var daveners = [numDaveners];
     for (i = 0; i < numDaveners; i++) {
-        data['Davener #' + (i+1)] = getDavenerText(i);
+        daveners[i] = getDavener(i);
+    }
+    data['daveners'] = daveners;
+
+    data["summary"] = {"roshHaShanah" : {'men' : seatSummary["roshHaShanah"]["men"], 'women' : seatSummary["roshHaShanah"]["women"]},
+                       "yomKippur" : {'men' : seatSummary["yomKippur"]["men"], 'women' : seatSummary["yomKippur"]["women"]}};
+
+    data["seatsElsewhere"] = {"seatsElsewhere" : $('#elsewhereButtonYes').prop("checked")}
+    if ($('#elsewhereButtonYes').prop("checked")) {
+        data["seatsElsewhere"]["explanation"] = $('#elsewhereExplanation').first().val();
     }
 
-    data["Rosh HaShanah summary"] = seatSummary["rh"]["men"] + " men, " + seatSummary["rh"]["women"] + " women"
-    data["Yom Kippur summary"] = seatSummary["yk"]["men"] + " men, " + seatSummary["yk"]["women"] + " women"
+    data['notes'] = $('#notes').val();
 
-    data["Notes"] = $('#notes').val()
+    data['membershipDue'] = membershipDue;
+    data['buildingFundDue'] = buildingFundDue;
+    data['seatsDue'] = seatsDue;
+    data['totalDue'] = membershipDue + buildingFundDue + seatsDue;
 
-    data['Membership due'] = membershipDue + "₪";
-    data['Building fund due'] = buildingFundDue + "₪";
-    data['Seats due'] = seatsDue + "₪";
-    data['Total due'] = (membershipDue + buildingFundDue + seatsDue) + "₪";
-    
-    sendEmail("https://public.herotofu.com/v1/1aadd290-4702-11ee-b711-0fdc810d0d65", data, onSuccess, onError);
-
+    // TODO - host
+    post("https://api.ktefrat.org.il/entities/yamimNoraimSeats", data, onSuccess, onError);
 }
 
-function getDavenerText(number) {
+function getDavener(number) {
+    var davener = {};
+
+    davener['name'] = $('input[name="name' + number + '"]').first().val();
+
     var male = $('#maleButton' + number).prop("checked");
-    var text = $('input[name="name' + number + '"]').first().val() + "; " +
-        (male ? "Male" : "Female") + "; ";
+    davener['gender'] = male ? "male" : "female";
 
-    const typeInput = $('select[name="type' + number + '"]').first();
-    var type = "-";
-    switch (typeInput.val()) {
-        case "member":
-            type = "Member";
-            break;
-        case "youngKid":
-            type = "Child under grade 5 (";
-            
-            switch ($('select[name="grade' + number + '"]').val()) {
-                case "gan":
-                    type += "Gan";
-                    break;
-                case "1":
-                    type += "1st";
-                    break;
-                case "2":
-                    type += "2nd";
-                    break;
-                case "3":
-                    type += "3rd";
-                    break;
-                case "4":
-                    type += "4th";
-                    break;
-            }
-            
-            type += ")";
-            break;
-        case "oldKid":
-            type = "Child - grade 5+";
-            break;
-        case "guest":
-            type = "Married child / guest";
-            break;
-        default:
-            break;
+    davener['type'] = $('select[name="type' + number + '"]').first().val();
+    if (davener['type'] == 'youngKid') {
+        davener['grade'] = $('select[name="grade' + number + '"]').val();
     }
-
-    text += type + "; ";
+    davener['days'] = {}
 
     const roshHaShanah = $('#roshHaShanah' + number);
     const yomKippur = $('#yomKippur' + number);
-    if (roshHaShanah.prop("checked") && yomKippur.prop("checked")) {
-        seatSummary["rh"][male ? "men" : "women"] = seatSummary["rh"][male ? "men" : "women"] + 1
-        seatSummary["yk"][male ? "men" : "women"] = seatSummary["yk"][male ? "men" : "women"] + 1
-        text += "Both"
-    } else if (roshHaShanah.prop("checked")) {
-        seatSummary["rh"][male ? "men" : "women"] = seatSummary["rh"][male ? "men" : "women"] + 1
-        text += "Rosh HaShanah"
-    } else if (yomKippur.prop("checked")) {
-        seatSummary["yk"][male ? "men" : "women"] = seatSummary["yk"][male ? "men" : "women"] + 1
-        text += "Yom Kippur"
+    if (roshHaShanah.prop("checked")) {
+        seatSummary["roshHaShanah"][male ? "men" : "women"] = seatSummary["roshHaShanah"][male ? "men" : "women"] + 1
+        davener['days']['roshHaShanah'] = true;
+    } else {
+        davener['days']['roshHaShanah'] = false;
     }
 
-    return text;
+    if (yomKippur.prop("checked")) {
+        seatSummary["yomKippur"][male ? "men" : "women"] = seatSummary["yomKippur"][male ? "men" : "women"] + 1
+        davener['days']['yomKippur'] = true;
+    } else {
+        davener['days']['yomKippur'] = false;
+    }
+
+    return davener;
 }
 
 var onSuccess = function(response) {
-    // alert("Form successfully submitted!\nIf you have not already done so, please visit the JGive links to complete your reservation by paying any amounts due.");
     console.log(response);
-    window.location.replace("thanks.html?language=" + language + "&membershipDue=" + membershipDue + "&buildingFundDue=" + buildingFundDue + "&seatsDue=" + seatsDue);
+    window.location.replace("thanks.html?language=" + language + "&membershipDue=" + membershipDue + "&buildingFundDue=" + buildingFundDue + "&seatsDue=" + seatsDue + "&email=" + $('#email').first().val().trim());
 };
 
 var onError = function(err) {
@@ -209,7 +169,12 @@ var onError = function(err) {
     console.error(err);
 };
 
-function sendEmail(endpointUrl, data, onSuccess, onError) {
+var onLinkError = function(err) {
+    alert("Error generating link");
+    console.error(err);
+};
+
+function post(endpointUrl, data, onSuccess, onError) {
     $("#submitButton"). attr("disabled", true);
     $.ajax({
         type: "POST",
@@ -234,6 +199,23 @@ function sendEmail(endpointUrl, data, onSuccess, onError) {
     });
 }
 
+function generateLink(amount, description, email, onLinkSuccess, onLinkError) {
+    $.ajax({
+        type: "GET",
+        // TODO - HOST
+        url: "https://api.ktefrat.org.il/paymentLink?amount=" + amount + "&description=" + description + "&language=" + language + "&email=" + email,
+        contentType: "application/json; charset=utf-8",
+        success: onLinkSuccess,
+        error: function(xhr, status) {
+            if (typeof this.statusCode[xhr.status] !== 'undefined') {
+                return false;
+            }
+
+            onLinkError(err);
+        }
+    });
+}
+
 function updateDaveners(newValue) {
     const oldNumDaveners = parseInt(numDaveners);
     const newNumDaveners = parseInt(newValue);
@@ -253,8 +235,10 @@ function updateDaveners(newValue) {
 
     if (newNumDaveners > 0) {
         $('#summary').removeClass('gone');
+        $('#elsewhereSection').removeClass('gone');
     } else {
         $('#summary').addClass('gone');
+        $('#elsewhereSection').addClass('gone');
     }
 }
 
@@ -274,6 +258,18 @@ function adjustIdsAndNames(davener, number) {
     });
 
     $('#numDaveners').on('change', function() {
+        validate();
+    });
+
+    $('#elsewhereButtonNo').on('change', function() {
+        validate();
+    });
+
+    $('#elsewhereButtonYes').on('change', function() {
+        validate();
+    });
+
+    $('#elsewhereExplanation').on('change', function() {
         validate();
     });
 
@@ -342,7 +338,7 @@ function validate() {
     }
 
     const emailInput = $('#email').first();
-    if (!emailInput.val().trim()) {
+    if (!isEmail(emailInput.val().trim())) {
         valid = false;
         if (submitAttempted) {
             emailInput.addClass('error');
@@ -443,6 +439,30 @@ function validate() {
 
     }
 
+    if (!$('#elsewhereButtonNo').prop("checked") && !$('#elsewhereButtonYes').prop("checked")) {
+        valid = false;
+        if (submitAttempted) {
+            $('#elsewhereLabelNo').addClass('error');
+            $('#elsewhereLabelYes').addClass('error');
+        }
+    } else {
+        $('#elsewhereLabelNo').removeClass('error');
+        $('#elsewhereLabelYes').removeClass('error');
+        if ($('#elsewhereButtonYes').prop("checked")) {
+            $('#elsewhereExplanationSection').removeClass('gone');
+            if (!$('#elsewhereExplanation').first().val().trim()) {
+                valid = false;
+                if (submitAttempted) {
+                    $('#elsewhereExplanation').addClass('error');
+                }
+            } else {
+                $('#elsewhereExplanation').removeClass('error');
+            }
+        } else {
+            $('#elsewhereExplanationSection').addClass('gone');
+        }
+    }
+
     switch (membershipInput.val()) {
         case "fullMember":
         case "becomingFullMember":
@@ -467,11 +487,49 @@ function validate() {
             break;
     }
     seatsDue = seatTotal;
-    
+
+    $('#membershipDueLabel').attr('href', 'https://icom.yaad.net/p/?action=pay&Amount=&Coin=1&FixTash=False&Info=Annual%20Dues&J5=False&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=False&Sign=True&Tash=1&UTF8=True&UTF8out=True&action=pay&email=&sendemail=True&tmp=11&signature=79d428c7d6aae39d8634ed3d0edd7b51a8a11698bb680315448667e057f6574c');
+    $('#buildingFundDueLabel').attr('href', 'https://pay.hyp.co.il/cgi-bin/yaadpay/yaadpay3ds.pl?Amount=3600&Coin=1&FixTash=False&Info=Building%20Fund&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=True&Tash=1&UTF8out=True&action=pay&freq=1&sendemail=True&tmp=11&signature=9a82bde4c243551ccdee8592b0379c75490991da45996eade5c68bfc2e6ac414');
+    $('#seatsDueLabel').attr('href', 'https://icom.yaad.net/p/?action=pay&Amount=&Coin=1&FixTash=False&Info=Yamim%20Noraim%20Seats&J5=False&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=False&Sign=True&Tash=1&UTF8=True&UTF8out=True&action=pay&email=&sendemail=True&tmp=11&signature=f75619bcb01c1d3d743f570cc194065084bbf54033978458be4c90625b703bdc');
+
+    var email = $('#email').first().val().trim();
+
+    if (membershipDue == 0) {
+        $('#membershipDueLabel').removeAttr("href");
+    } else {
+        generateLink(membershipDue, language == "en" ? "Annual Dues" : "דמי חבר", email, function(response) {
+           $('#membershipDueLabel').attr('href', response.link);
+        }, onLinkError);
+    }
+
+    if (buildingFundDue == 0) {
+        $('#buildingFundDueLabel').removeAttr("href");
+    } else {
+        generateLink(buildingFundDue, language == "en" ? "Building Fund" : "קרן בניין", email, function(response) {
+           $('#buildingFundDueLabel').attr('href', response.link);
+        }, onLinkError);
+    }
+
+    if (seatTotal == 0) {
+        $('#seatsDueLabel').removeAttr("href");
+    } else {
+        generateLink(seatTotal, language == "en" ? "Seats for Yamim Noraim" : "מקומות לימים נוראים", email, function(response) {
+           $('#seatsDueLabel').attr('href', response.link);
+        }, onLinkError);
+    }
+
     $('#membershipDue').text(membershipDue);
     $('#buildingFundDue').text(buildingFundDue);
     $('#seatsDue').text(seatTotal);
 
+    if (submitAttempted) {
+        $("#submitButton"). attr("disabled", !valid);
+    }
 
     return valid;
+}
+
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
 }

@@ -2,7 +2,6 @@
 <html>
     <!-- TODO 
         Shul web site
-        JGive links with amounts?
         Submission contacts
     -->
     <head>
@@ -28,7 +27,7 @@
         
         <p id="intro">As we approach another Rosh Hashanah, we wish everyone a year of health, happiness and spiritual growth, as individuals and together as a community. We'd also like to take this opportunity to welcome all those who have recently moved into the neighborhood! We hope that you will find a warm second family within our shul.</p>
         
-        <p><span id="outstanding">As we close the year, we ask all current members to take care of any outstanding obligations to the shul (payment for kiddushes or previous dues or fees, etc.) <a href="https://ktefrat.org.il/donate/" target="_blank">here</a>. Thank you!</p>
+        <p><span id="outstanding">As we close the year, we ask all current members to take care of any outstanding obligations (previous dues or fees, etc.) <a href="https://ktefrat.org.il/donate/" target="_blank">here</a>. If you sponsored a kiddish within the last year, please ensure that you paid Yisrael Cohen. Thank you!</p>
     </div>
     <div>
         <h3 id="membershipTitle">Membership</h3>
@@ -39,23 +38,22 @@
             <li id="membershipFeeWeekday">Weekday Davening (non-membership): <strong>600&#8362;</strong></li>
         </ul>
         
-        <p id="infoForm">All members, new and old should fill out <a href="https://ktefrat.org.il/memberform/" target="_blank">this form</a> if they have not already done so.</p>
+        <p id="infoForm">All members, new and old, should fill out <a href="https://ktefrat.org.il/memberform/" target="_blank">this form</a> if they have not already done so.</p>
         
-        <p id="negotiable">We would be thrilled to welcome you as a member of our community. If you have any financial constraints, we encourage you to speak with Rafi Eis (<a href="mailto:rafieis@gmail.com" target="_blank">rafieis@gmail.com</a>) confidentially. </p>
+        <p id="negotiable">We would be thrilled to welcome you as a member of our community. If you have any financial constraints, we encourage you to speak with Ariel Auman (<a href="mailto:arielauman@gmail.com" target="_blank">arielauman@gmail.com</a>) confidentially. </p>
     </div>
     <div>
         <h3 id="buildingFundHeader">Building Fund</h3>
-        <p id="buildingFundAmount">The Building Fund total payment is <strong>3,600&#8362;</strong>. Building Fund payments may be made in installments, with a minimum of 360&#8362; per year. Payment for building fund can be made <a href="https://www.jgive.com/new/en/ils/donation-targets/103156" target="_blank">here</a>.</p>
+        <p id="buildingFundAmount">The Building Fund total payment is <strong>3,600&#8362;</strong>. Building Fund payments may be made in installments, with a minimum of 360&#8362; per year. Payment for building fund can be made <a href="https://pay.hyp.co.il/cgi-bin/yaadpay/yaadpay3ds.pl?Amount=3600&Coin=1&FixTash=False&Info=Building%20Fund&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=True&Tash=1&UTF8out=True&action=pay&freq=1&sendemail=True&tmp=11&signature=9a82bde4c243551ccdee8592b0379c75490991da45996eade5c68bfc2e6ac414" target="_blank">here</a>.</p>
     </div>
     <div>
         <h3 id="seating">Seating for the Yamim Noraim</h3>
-        <p id="terms">Membership includes seating for immediate family members. Seats for married children, parents, grandparents, and guests are <strong>150&#8362;/seat</strong> for the Yamim Noraim and <strong>100&#8362;/seat</strong> for either Rosh Hashanah or Yom Kippur. Additional seating depends on availability. Seating for children under 5th grade will depend on availability.</p>
+        <p id="terms">Membership includes seating for immediate family members. Seats for married children, parents, grandparents, and guests are <strong>150&#8362;/seat</strong> for the Yamim Noraim and <strong>100&#8362;/seat</strong> for either Rosh Hashanah or Yom Kippur. Additional seating depends on availability. Seating for children under 5th grade will depend on availability. Last year, we had a surplus of requests for seating in the ezrat nashim and then many women did not attend the tefillot. We ask everyone to be mindful of the space constraints. Please do not request more seats than you will actually need.</p>
         
-        <p id="deadline">To reserve seats, please complete the below form (or if you are unable, the written form sent out via email) by Tuesday, September 5, 2023 / 19 Elul.</p>
+        <p id="deadline">To reserve seats, please complete the below form (we will not accept seat requests in any other way) as soon as possible. The deadline for reserving seats is Sunday, September 15, 2024 / 12 Elul.</p>
         
-        <p id="methods">Payment for annual dues and extra seating can be made using one of the following methods:</p>
+        <p id="methods">Please make every effort to pay using the links already provided above. For those who require a different payment method, you may use the following options:</p>
         <ul>
-        <li id="methodJGive"><strong>Preferred</strong>: Shul Website (JGive): <a href="https://ktefrat.org.il/donate/" target="_blank">https://ktefrat.org.il/donate/</a></li>
         <li><span id="methodBank">Bank Transfer:</span>
         <br/><span id="accountName">Account Name: Beit Knesset Kapot Temarim</span>
         <br/><span id="bankName">Bank: Mizrachi 20</span>
@@ -98,20 +96,38 @@
         <div id="daveners">
 
         </div>
+
+        <div id="elsewhereSection" class="gone">
+            <div id="elsewhere">Do any of the above people have seats reserved elsewhere for the Yamim Noraim?</div>
+
+            <span class="elsewhereBoolean">
+                    <input id="elsewhereButtonNo" type="radio" name="elsewhere" value="male"></input>
+                    <label id="elsewhereLabelNo" class="noLabel" for="elsewhereButtonNo">No</label>
+                    <input id="elsewhereButtonYes" type="radio" name="elsewhere" value="female"></input>
+                    <label id="elsewhereLabelYes" class="yesLabel" for="elsewhereButtonYes">Yes</label>
+            </span>
+
+            <div id="elsewhereExplanationSection" class="gone">
+                <p id="elsewhereTitle">Please explain</p>
+                <textarea rows="3" cols="50" name="elsewhereExplanation" id="elsewhereExplanation"></textarea>
+            </div>
+            <!--            Make sure they answer the radio; if yes, make sure explanation has text-->
+        </div>
+
         <div id="summary" class="gone">
             <p id="notesTitle">Additional notes</p>
             <textarea rows="3" cols="50" name="notes" id="notes"></textarea>
             <h3 id="totalsDue">Total amounts due</h3>
             <p id="eachLink">Please pay each sum at the appropriate link.</p>
             <ul>
-                <li><a href="https://www.jgive.com/new/en/ils/donation-targets/103157" target="_blank" id="membershipDueLabel">Annual dues</a>: <span id="membershipDue">0</span>&#8362;</li>
-                <li><a href="https://www.jgive.com/new/en/ils/donation-targets/103156" target="_blank" id="buildingFundDueLabel">Building fund</a>: <span id="buildingFundDue">0</span>&#8362;</li>
-                <li><a href="https://www.jgive.com/new/en/ils/collect/donation-targets/103135/amount" target="_blank" id="seatsDueLabel">Seats</a>: <span id="seatsDue">0</span>&#8362;</li>
+                <li><a href="https://icom.yaad.net/p/?action=pay&Amount=&Coin=1&FixTash=False&Info=Annual%20Dues&J5=False&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=False&Sign=True&Tash=1&UTF8=True&UTF8out=True&action=pay&email=&sendemail=True&tmp=11&signature=79d428c7d6aae39d8634ed3d0edd7b51a8a11698bb680315448667e057f6574c" target="_blank" id="membershipDueLabel">Annual dues</a>: <span id="membershipDue">0</span>&#8362;</li>
+                <li><a href="https://pay.hyp.co.il/cgi-bin/yaadpay/yaadpay3ds.pl?Amount=3600&Coin=1&FixTash=False&Info=Building%20Fund&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=True&Tash=1&UTF8out=True&action=pay&freq=1&sendemail=True&tmp=11&signature=9a82bde4c243551ccdee8592b0379c75490991da45996eade5c68bfc2e6ac414" target="_blank" id="buildingFundDueLabel">Building fund</a>: <span id="buildingFundDue">0</span>&#8362;</li>
+                <li><a href="https://icom.yaad.net/p/?action=pay&Amount=&Coin=1&FixTash=False&Info=Yamim%20Noraim%20Seats&J5=False&Masof=4501681128&MoreData=True&PageLang=ENG&Postpone=False&SendHesh=True&ShowEngTashText=False&Sign=True&Tash=1&UTF8=True&UTF8out=True&action=pay&email=&sendemail=True&tmp=11&signature=f75619bcb01c1d3d743f570cc194065084bbf54033978458be4c90625b703bdc" target="_blank" id="seatsDueLabel">Seats</a>: <span id="seatsDue">0</span>&#8362;</li>
             </ul>
             <button id="submitButton" type="submit">Submit</button>
         </div>
         <div id="contact">
-            Please contact <a href="mailto:ktefrat@gmail.com" target="_blank">ktefrat@gmail.com</a> with any questions or comments.
+            Please contact <a href="mailto:info@ktefrat.org.il" target="_blank">info@ktefrat.org.il</a> with any questions or comments.
         </div>
 
 
